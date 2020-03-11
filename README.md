@@ -20,5 +20,3 @@ To run the application in development, you can run these commands
 ** Lancer le serveur php **
 ```composer start```
 
-** Lancer le serveur webpack** (pour l'app React)
-```composer start-npm```
