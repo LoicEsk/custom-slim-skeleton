@@ -8,16 +8,12 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
-use App\Application\Actions\FrontApp\GetFrontApp;
-
 return function (App $app) {
 
     $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
+        // $response->getBody()->write('Hello world!');
+        return $response->withStatus(302)->withHeader('Location', '/app');
     });
-
-    $app->get('/app[{path}]', GetFrontApp::class );
 
     // $app->group('/users', function (Group $group) {
     //     $group->get('', ListUsersAction::class);

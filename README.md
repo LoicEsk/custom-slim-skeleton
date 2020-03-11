@@ -14,6 +14,13 @@ Squelette d'application Slim 4 avec dépendances prêtes à l'emploi.
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `logs/` is web writable.
 
+### Pour le developpement
+* Installer des dépendances NodeJS :
+```
+cd front-app
+npm install
+```
+
 ## Developpement
 To run the application in development, you can run these commands 
 
