@@ -11,9 +11,11 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
+    $app->get('/', function (Request $request, Response $response) use ( $app ) {
+        $container = $app->getContainer();
+        return $container->get('view')->render($response, 'base.html', [
+            'title' => "Custom Slim skeleton",
+        ]);
     });
 
     // $app->group('/users', function (Group $group) {

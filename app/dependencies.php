@@ -56,6 +56,27 @@ return function (ContainerBuilder $containerBuilder) {
                 $settings['doctrine']['connection'],
                 $config
             );
+        },
+
+        'view' => function( ContainerInterface $container ) {
+            $settings = $container->get('settings');
+            $twigTemplatePath = $settings['twig']['templatePath'];
+            $twigCachePath = $settings['dev_mode'] ? false : $settings['twig']['cachePath'];
+
+            $loader = new \Twig\Loader\FilesystemLoader( $twigTemplatePath );
+            $twig = new \Slim\Views\Twig( $loader , [
+                'cache' => $twigCachePath,
+                'debug' => true
+            ]);
+        
+            // Instantiate and add Slim specific extension
+            // $router = $container->get('router');
+            // $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+            // $twig->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+            
+            $twig->addExtension(new \Twig\Extension\DebugExtension());
+        
+            return $twig;
         }
     ]);
 };

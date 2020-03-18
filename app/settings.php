@@ -17,6 +17,7 @@ return function (ContainerBuilder $containerBuilder) {
     // Global Settings Object
     $containerBuilder->addDefinitions([
         'settings' => [
+            'dev_mode' => getenv( 'debug' ),
             'displayErrorDetails' => true, // Should be set to false in production
             'logger' => [
                 'name' => 'slim-app',
@@ -44,6 +45,10 @@ return function (ContainerBuilder $containerBuilder) {
                     'charset'   => 'utf8'
                 ]
             ], 
+            'twig'  => [
+                'templatePath' => APP_ROOT . '/templates/twig',
+                'cachePath'     => APP_ROOT . '/var/cache/twig'
+            ]
         ],
     ]);
 };

@@ -39,12 +39,16 @@ class UserAuthenticator implements AuthenticatorInterface {
 return function (App $app) {
     $app->add(SessionMiddleware::class);
 
-    $app->add(new HttpBasicAuthentication([
-        "secure" => true,
-        "relaxed" => ["localhost"],
-        "path"      => "/",         // protéger tout
-        // "ignore"    => ['/api'],   // sauf l'api'
-        "realm"     => "Protected",
-        "authenticator" => new UserAuthenticator( $app )
-    ]));
+    /**
+     * Sécurisation avec une autentication basique
+     * Décommenter les lignes ci-dessous pour l'activer
+     */
+    // $app->add(new HttpBasicAuthentication([
+    //     "secure" => true,
+    //     "relaxed" => ["localhost"],
+    //     "path"      => "/",         // protéger tout
+    //     // "ignore"    => ['/api'],   // sauf l'api'
+    //     "realm"     => "Protected",
+    //     "authenticator" => new UserAuthenticator( $app )
+    // ]));
 };
