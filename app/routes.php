@@ -8,6 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
+use App\Application\Actions\User\ViewMyAccount;
+
 
 return function (App $app) {
 
@@ -17,6 +19,8 @@ return function (App $app) {
             'title' => "Custom Slim skeleton",
         ]);
     });
+
+    $app->get( '/my-account[/]', ViewMyAccount::class );
 
     // $app->group('/users', function (Group $group) {
     //     $group->get('', ListUsersAction::class);
